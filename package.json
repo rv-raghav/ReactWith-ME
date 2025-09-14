@@ -1,0 +1,36 @@
+{
+  "name": "reactwithme",
+  "version": "1.0.0",
+  "description": "This is React Learn With Me ",
+  "keywords": [
+    "react",
+    "learnwithme"
+  ],
+  "homepage": "https://github.com/rv-raghav/ReactWith-ME#readme",
+  "bugs": {
+    "url": "https://github.com/rv-raghav/ReactWith-ME/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rv-raghav/ReactWith-ME.git"
+  },
+  "license": "ISC",
+  "author": "Raghav Verma",
+  "type": "commonjs",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-shimmer-effects": "^1.0.4"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
