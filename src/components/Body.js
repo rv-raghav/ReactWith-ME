@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils.js/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -26,22 +27,31 @@ const Body = () => {
     setFilteredRestaurants(restaurants);
   };
 
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) {
+    return (
+      <h1 className="text-red-600 font-bold text-center mt-10">
+        Looks like you're offline! Please check your internet connection.
+      </h1>
+    );
+  }
+
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
+    <div className="p-4">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
+        <div className="flex items-center gap-2">
           <input
             type="text"
-            className="search-box"
+            className="border rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
             placeholder="Search"
             value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
+            onChange={(e) => setSearchText(e.target.value)}
           />
           <button
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
             onClick={() => {
               const filtered = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -53,8 +63,8 @@ const Body = () => {
           </button>
         </div>
 
-        <div
-          className="filter-btn"
+        <button
+          className="px-4 py-2 border rounded-md hover:bg-gray-200 transition"
           onClick={() => {
             const filteredList = listOfRestaurants.filter((res) => {
               const rating = parseFloat(res.info.avgRating) || 0;
@@ -64,16 +74,16 @@ const Body = () => {
           }}
         >
           Top Rated Restaurants
-        </div>
+        </button>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap justify-center">
         {filteredRestaurants.map((restaurant) => (
           <Link
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+            <RestaurantCard resData={restaurant} />
           </Link>
         ))}
       </div>
