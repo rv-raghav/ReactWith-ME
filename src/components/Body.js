@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard /*withPromotedLabel*/ from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -9,6 +9,9 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  // const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
+  console.log("Body Rendered", listOfRestaurants);
   useEffect(() => {
     fetchData();
   }, []);
@@ -83,6 +86,14 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
+            {/* {
+              {if the res is promoted right promoted on top of it => higher order component} *
+              restaurant?.data?.promoted ? (
+                <RestaurantCardPromoted resData={restaurant} />
+              ) : (
+                <RestaurantCard resData={restaurant} />
+              )
+            } */}
             <RestaurantCard resData={restaurant} />
           </Link>
         ))}
