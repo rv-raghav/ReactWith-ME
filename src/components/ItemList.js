@@ -40,12 +40,12 @@ const ItemList = ({ items }) => {
                   alt={item.card.info.name}
                   className="w-20 h-20 object-cover rounded-lg shadow-md"
                 />
-                <button className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-green-600 font-bold px-4 py-1 rounded-md shadow-lg hover:bg-green-50 transition-colors duration-200 text-xs border border-green-200">
+                <button className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-green-600 font-bold px-4 py-1 rounded-md shadow-lg hover:bg-green-50 transition-colors duration-200 text-xs border border-green-200 cursor-pointer">
                   ADD
                 </button>
               </div>
             ) : (
-              <button className="bg-green-600 text-white font-bold px-6 py-2 rounded-md hover:bg-green-700 transition-colors duration-200 shadow-md text-sm">
+              <button className="bg-green-600 text-white font-bold px-6 py-2 rounded-md hover:bg-green-700 transition-colors duration-200 shadow-md text-sm cursor-pointer">
                 ADD
               </button>
             )}

@@ -7,7 +7,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
-
+import UserContext from "./utils.js/UserContext";
+import { useState, useEffect } from "react";
 // Chunking
 // Code Splitting
 // Dynamic Bundling
@@ -17,11 +18,21 @@ import RestaurantMenu from "./components/RestaurantMenu";
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
+  // authentication
+  useEffect(() => {
+    const data = {
+      name: "Raghav",
+    };
+    setUserName(data.name);
+  }, []);
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedInUser: userName }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
